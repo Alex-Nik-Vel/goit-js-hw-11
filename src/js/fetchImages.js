@@ -10,7 +10,7 @@ export default async function fetchImages(searchData, page) {
   // console.log('searchData===', searchData)
 
   const response = await axios.get(
-    `${BASE_URL}?key=${API_KEY}&q=${searchData}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}}`,
+    `${BASE_URL}?key=${API_KEY}&q=${searchData}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}`,
   );
   return response;
 }
