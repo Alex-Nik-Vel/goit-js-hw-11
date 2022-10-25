@@ -40,8 +40,8 @@ async function onFormSubmit(evt) {
   resetPage();
 
   try {
-    console.log('searchData-index', searchData);
-    console.log('page-index', page)
+    console.log('searchData-index onForm', searchData);
+    console.log('page-index onForm', page)
     
     const response = await fetchImages(searchData, page);
     const data = response.data;
