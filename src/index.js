@@ -23,7 +23,7 @@ loadMoreBtn.addEventListener('click', onloadMoreBtnClick);
 
 let searchData = '';
 let page = 1;
-let currentHits = 0;
+// let currentHits = 0;
 
 async function onFormSubmit(evt) {
   evt.preventDefault();
@@ -57,9 +57,10 @@ async function onFormSubmit(evt) {
       loadMoreBtn.classList.remove('is-hidden');
       endImagesText.classList.add('is-hidden');
     } else if (page * 40 > data.totalHits) {
-      onNotify();
+      Notify.success(`Hooray! We found ${data.totalHits} images.`);
       imagesListMarkup(data.hits);
       simpleLightBox.refresh();
+      onNotifyInfo();
     }
   } catch (error) {
     console.log(error);
@@ -78,7 +79,7 @@ async function onloadMoreBtnClick() { loadMoreBtn.classList.add('is-hidden');
     scrollGallery();
 
     if (page * 40 > data.totalHits) {
-      onNotify();   
+      onNotifyInfo();   
   
     } else {
       loadMoreBtn.classList.remove('is-hidden');
@@ -86,14 +87,8 @@ async function onloadMoreBtnClick() { loadMoreBtn.classList.add('is-hidden');
   } catch (error) {
     console.log(error);
   }
-    
 }
-function onNotify() {
-  loadMoreBtn.classList.add('is-hidden');
-  endImagesText.classList.remove('is-hidden');
-  Notify.info("We're sorry, but you've reached the end of search results.");
-}
-
+ 
 function increment() {
   page += 1;
 }
@@ -102,6 +97,12 @@ function resetPage() {
   page = 1;
 }
 
+// Notify
+function onNotifyInfo() {
+  loadMoreBtn.classList.add('is-hidden');
+  endImagesText.classList.remove('is-hidden');
+  Notify.info("We're sorry, but you've reached the end of search results.");
+}
 
 
 async function scrollGallery() {
